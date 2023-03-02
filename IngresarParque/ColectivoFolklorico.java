@@ -4,6 +4,8 @@ import java.util.concurrent.Semaphore;
 public class ColectivoFolklorico {
     private Semaphore asientos, avisarEmpleado, avisarClientes;
 
+  
+
     public ColectivoFolklorico(){
 
         asientos= new Semaphore(25, true);
@@ -15,6 +17,7 @@ public class ColectivoFolklorico {
         //empleado
         try {
             avisarEmpleado.acquire(25);
+            System.out.println(" COLECTIVERO INICIANDO VIAJESULI");
         } catch (Exception e) {
         }
     }
@@ -32,12 +35,14 @@ public class ColectivoFolklorico {
     public void tomarAsiento(){
         try {
             asientos.acquire();
+            System.out.println(Thread.currentThread().getName() + " consiguio asiento en el cole ");
         } catch (Exception e) {
         }
     }
     
     public void avisoLlegada(){
         avisarEmpleado.release();
+      
     }
     
     public void avisoSalida(){
@@ -51,6 +56,7 @@ public class ColectivoFolklorico {
         //los que suban van a quedarse bloqueados esperando a que el cliente libere los permisos cuando llege a destino
         try {
             avisarClientes.acquire();
+            System.out.println(Thread.currentThread().getName() + " se baja ");
         } catch (Exception e) {
         }
     }

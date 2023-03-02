@@ -3,23 +3,29 @@ import IngresarParque.*;
 import Shop.*;
 import java.util.Random;
 
-public class Cliente {
+public class Cliente implements Runnable {
     private Rio rio;
     private Entrada e;
     private ColectivoFolklorico c;
     private CentroCompras shop;
 
 
-
+    public Cliente (Rio r, Entrada e, ColectivoFolklorico c, CentroCompras shop){
+        this.rio=r;
+        this.e=e;
+        this.c=c;
+        this.shop=shop;
+    }
 
 
     public void run (){
         Random r= new Random();
 
-        if ((int)r.nextInt(2)==1){
+        if (/*(int)r.nextInt(2)==1*/ true){
             System.out.println(Thread.currentThread().getName()+ " va en colectivo");
             c.tomarAsiento();
-            //simular
+            c.avisoLlegada();
+            this.simula();
             c.bajarse();
             c.avisoLlegada();
         }
@@ -34,6 +40,7 @@ public class Cliente {
         else{
             System.out.println(" EL PARQUE ESTA CERRADISIMMOOOO");
         }
+        /*
 
         if ((int)r.nextInt(2)==0){
             System.out.println(Thread.currentThread().getName()+ " va a las actividades");
@@ -57,6 +64,8 @@ public class Cliente {
         }
     
     }
+    */
+    }
 
     public void simula(){
         try{
@@ -67,6 +76,7 @@ public class Cliente {
         }
     }
 
+    /*
     public void realizarActividadGomon(){
         Random r= new Random();
 
@@ -83,7 +93,7 @@ public class Cliente {
         }
         rio.dejarBolso();
 
-    }
+    }*/
 
 
 }

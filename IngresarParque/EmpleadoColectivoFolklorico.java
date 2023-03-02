@@ -1,5 +1,6 @@
 package IngresarParque;
-public class EmpleadoColectivoFolklorico {
+public class EmpleadoColectivoFolklorico  implements Runnable{
+    
         ColectivoFolklorico c;
         
         public EmpleadoColectivoFolklorico(ColectivoFolklorico c){
@@ -8,6 +9,7 @@ public class EmpleadoColectivoFolklorico {
         
         public void run(){
             while(true){
+             System.out.println("---------------------");
              c.iniciarViaje();
              System.out.println("Colectivo Folklorico: Comenzando viaje");
              this.simulaViaje();

@@ -10,7 +10,7 @@ public class Entrada {
    public Entrada(int cantMolinetes){
        molinetes= new Molinete [cantMolinetes];
        this.inicializarMolinetes();
-       horaActual=0;
+       horaActual=8;
        mutexHora= new Semaphore(1);
   
    }

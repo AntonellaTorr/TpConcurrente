@@ -3,7 +3,7 @@ package IngresarParque;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Hora {
+public class Hora implements Runnable {
     private Entrada entrada;
 
     public Hora(Entrada entrada) {
