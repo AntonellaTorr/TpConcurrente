@@ -41,6 +41,7 @@ public class Rio {
             // agarra un gomon individual, sino se queda bloqueado
             System.out.println(Thread.currentThread().getName() +" intenta ingresar individual");
             gomonesIndividuales.acquire();
+            System.out.println(Thread.currentThread().getName() +" TOMO GOMON IND");
             
             // se fija si todavia hay espacio para tirarse
             puedenTirarse.acquire();
@@ -56,9 +57,7 @@ public class Rio {
 
             // si soy el ultimo hilo que se podia tirar, reseteo la barrera
             if (cantGomonesQueSeTiraron == this.cantGomonesQueSePuedenTirar) {
-                barrera.reset();
-                puedenTirarse.release(this.cantGomonesQueSePuedenTirar);
-                System.out.println(Thread.currentThread().getName() +" SE RESETEA LA BARRERA");
+                this.resetearBarrera();
             }
           
 
@@ -75,6 +74,7 @@ public class Rio {
             // agarra un gomon individual, sino se queda bloqueado
             System.out.println(Thread.currentThread().getName() +" intenta ingresar doble");
             gomonesDobles.acquire();
+            System.out.println(Thread.currentThread().getName() +" TOMO GOMON DOBLE");
 
 
             // se fija si todavia hay espacio para tirarse
@@ -94,9 +94,7 @@ public class Rio {
 
             // si soy el ultimo hilo que se podia tirar, reseteo la barrera
             if (cantGomonesQueSeTiraron == this.cantGomonesQueSePuedenTirar) {
-                barrera.reset();
-                puedenTirarse.release(this.cantGomonesQueSePuedenTirar);
-                System.out.println(" SE RESETEA LA BARRERA");
+                this.resetearBarrera();
             }
           
             mutex.release();
@@ -104,6 +102,12 @@ public class Rio {
         } catch (Exception ex) {
             Logger.getLogger(Rio.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public void resetearBarrera(){
+        barrera.reset();
+        puedenTirarse.release(this.cantGomonesQueSePuedenTirar);
+        cantGomonesQueSeTiraron=0;
+        System.out.println("----------------------------------------- SE RESETEA LA BARRERA----------------------------------");
     }
 
     public void dejarBolso() {
