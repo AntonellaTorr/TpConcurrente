@@ -10,7 +10,7 @@ public class Entrada {
    public Entrada(int cantMolinetes){
        molinetes= new Molinete [cantMolinetes];
        this.inicializarMolinetes();
-       horaActual=8;
+       horaActual=9;
        mutexHora= new Semaphore(1);
   
    }
@@ -26,6 +26,7 @@ public class Entrada {
         }
 
        if(horaActual>=9 && horaActual<=17){
+            mutexHora.release();
             //Busca un molinete libre
             while(i<molinetes.length){
                 if(molinetes[i].molineteLibre()){
@@ -46,6 +47,7 @@ public class Entrada {
            
         }
         else{
+            mutexHora.release();
             molineteAEsperar=-1;
         }
         return molineteAEsperar;
@@ -62,10 +64,18 @@ public class Entrada {
    }
    
    public void pasarHora(){
+    try {
+        mutexHora.acquire();
+    } catch (InterruptedException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
        if(horaActual>=23)
            horaActual=0;
        else
            horaActual++;
+
+    mutexHora.release();
    }
     
     

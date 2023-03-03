@@ -1,11 +1,12 @@
 package Gomones;
 
-import java.util.concurrent.Semaphore;
 public class CamionetaConBolsos implements Runnable {
-    private Semaphore mutex;
-    private String [] bolsitos;
-    private int bolsoCliente;
+
     private Rio r;
+
+    public CamionetaConBolsos (Rio r){
+        this.r=r;
+    }
     
     public void run (){
 

@@ -19,9 +19,11 @@ public class Cliente implements Runnable {
 
 
     public void run (){
+        System.out.println(Thread.currentThread().getName()+ " iniciando");
         Random r= new Random();
-
-        if (/*(int)r.nextInt(2)==1*/ true){
+        //(int)r.nextInt(2)==1
+        /*/
+        if (true){
             System.out.println(Thread.currentThread().getName()+ " va en colectivo");
             c.tomarAsiento();
             c.avisoLlegada();
@@ -32,25 +34,31 @@ public class Cliente implements Runnable {
         else{
             System.out.println(Thread.currentThread().getName()+ " va por su cuenta ");
 
-        }
+        }*/
         int nroMolinete= e.entrarAlParque();
         if (nroMolinete!=-1){
             e.entro(nroMolinete);
+            System.out.println(Thread.currentThread().getName()+ " entro al parque ");
+
+            this.pasearPorElParque();
+
         }
         else{
-            System.out.println(" EL PARQUE ESTA CERRADISIMMOOOO");
+            System.out.println(" El parque esta cerrado " +Thread.currentThread().getName()+ " se va");
         }
-        /*
+        
 
-        if ((int)r.nextInt(2)==0){
-            System.out.println(Thread.currentThread().getName()+ " va a las actividades");
+       
+    
+    
+    }
+    public void pasearPorElParque(){
+        Random r= new Random();
+        if (true){
+            System.out.println("------------------------"+ Thread.currentThread().getName()+ " VA AL GOMON");
 
             //hacer un switch segun lo que quier
             this.realizarActividadGomon();
-
-
-
-
 
         }
         else{
@@ -62,9 +70,6 @@ public class Cliente implements Runnable {
             shop.finalizarPago();
             System.out.println(Thread.currentThread().getName()+ " ya compro y se retira");
         }
-    
-    }
-    */
     }
 
     public void simula(){
@@ -76,14 +81,19 @@ public class Cliente implements Runnable {
         }
     }
 
-    /*
+    
     public void realizarActividadGomon(){
         Random r= new Random();
 
+        rio.dejarBolso();
+        System.out.println(Thread.currentThread().getName() + " DEJA EL BOLSO");
+
         if ((int)r.nextInt(2)==0){
+           
             rio.entrarIndividual();
             //se esta tirandoo
             rio.salirIndividual();
+           
           
         }
         else{
@@ -91,9 +101,11 @@ public class Cliente implements Runnable {
             //se esta tirando
             rio.salirDoble();
         }
-        rio.dejarBolso();
 
-    }*/
+        rio.retirarBolso();
+        System.out.println(Thread.currentThread().getName() +" RETIRA EL BOLSO");
+
+    }
 
 
 }
