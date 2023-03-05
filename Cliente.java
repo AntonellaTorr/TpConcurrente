@@ -22,8 +22,8 @@ public class Cliente implements Runnable {
         System.out.println(Thread.currentThread().getName()+ " iniciando");
         Random r= new Random();
         //(int)r.nextInt(2)==1
-        /*/
-        if (true){
+        
+        if ((int)r.nextInt(2)==1){
             System.out.println(Thread.currentThread().getName()+ " va en colectivo");
             c.tomarAsiento();
             c.avisoLlegada();
@@ -34,7 +34,7 @@ public class Cliente implements Runnable {
         else{
             System.out.println(Thread.currentThread().getName()+ " va por su cuenta ");
 
-        }*/
+        }
         int nroMolinete= e.entrarAlParque();
         if (nroMolinete!=-1){
             e.entro(nroMolinete);
@@ -54,7 +54,7 @@ public class Cliente implements Runnable {
     }
     public void pasearPorElParque(){
         Random r= new Random();
-        if (true){
+        if ((int)r.nextInt(2)==0){
             System.out.println("------------------------"+ Thread.currentThread().getName()+ " VA AL GOMON");
 
             //hacer un switch segun lo que quier
