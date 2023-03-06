@@ -3,11 +3,14 @@ import IngresarParque.*;
 import Shop.*;
 import java.util.Random;
 
+import Comida.Restaurant;
+
 public class Cliente implements Runnable {
     private Rio rio;
     private Entrada e;
     private ColectivoFolklorico c;
     private CentroCompras shop;
+    private Restaurant res1, res2, res3;
 
 
     public Cliente (Rio r, Entrada e, ColectivoFolklorico c, CentroCompras shop){
@@ -21,7 +24,7 @@ public class Cliente implements Runnable {
     public void run (){
         System.out.println(Thread.currentThread().getName()+ " iniciando");
         Random r= new Random();
-        //(int)r.nextInt(2)==1
+        
         
         if ((int)r.nextInt(2)==1){
             System.out.println(Thread.currentThread().getName()+ " va en colectivo");
@@ -81,6 +84,49 @@ public class Cliente implements Runnable {
         }
     }
 
+    public void irAAlmorzar (){
+        Random r= new Random();
+        if ((int)r.nextInt(3)==0){
+            res1.ingresar();
+            res1.comprarAlmuerzo();
+        }
+        else{
+            if ((int)r.nextInt(3)==1){
+                res2.ingresar();
+                res2.comprarAlmuerzo();
+            }
+            else{
+                res3.ingresar();
+                res3.comprarAlmuerzo();
+
+            }
+
+        }
+
+    }
+    public void irAMerendar (){
+        Random r= new Random();
+        if ((int)r.nextInt(3)==0){
+            res1.ingresar();
+            res1.comprarMerienda();
+        }
+        else{
+            if ((int)r.nextInt(3)==1){
+                res2.ingresar();
+                res2.comprarMerienda();
+            }
+            else{
+                res3.ingresar();
+                res3.comprarMerienda();
+
+            }
+
+        }
+
+    }
+
+  
+
     
     public void realizarActividadGomon(){
         Random r= new Random();
@@ -89,11 +135,9 @@ public class Cliente implements Runnable {
         System.out.println(Thread.currentThread().getName() + " DEJA EL BOLSO");
 
         if ((int)r.nextInt(2)==0){
-           
             rio.entrarIndividual();
             //se esta tirandoo
             rio.salirIndividual();
-           
           
         }
         else{

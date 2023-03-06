@@ -26,8 +26,10 @@ public class Restaurant {
         cantAlmuerzosDisponibles=0;
         cantMeriendasDisponibles=0;
     }
+ 
     public void ingresar(){
         mutexIngreso.lock();
+   
         while (cantPersonasAdentro==capacidad){
             try {
                 hayLugar.await();
@@ -37,6 +39,7 @@ public class Restaurant {
             }
         }
         cantPersonasAdentro++;
+
         mutexIngreso.unlock();
 
     }
